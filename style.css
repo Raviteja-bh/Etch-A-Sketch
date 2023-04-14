@@ -149,3 +149,9 @@ body {
     color: wheat;
     text-shadow: 2px 2px 3px black;
 }
+
+#xvalue, #yvalue {
+    background-color: black;
+    color: wheat;
+    border-radius: 12px;
+}
