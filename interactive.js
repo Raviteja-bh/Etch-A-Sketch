@@ -88,16 +88,24 @@ document.body.appendChild(btnDiv);
 let yAce = document.getElementById('yvalue');
 let xAce = document.getElementById('xvalue');
 
-var grid = document.createElement('div');
-grid.className = 'grid';
-grid.id = "grid";
-let goBtn = document.getElementById('btnValue');
-goBtn.addEventListener('click', (e) => {
+
+function getGrid() {
+    var element = document.getElementById('grid');
+    if (element != null && element != 'undefined') {
+        element.remove();
+    }
+    var grid = document.createElement('div');
+    grid.className = 'grid';
+    grid.id = "grid";
+
     let columns = parseInt(yAce.value);
     let rows = parseInt(xAce.value);
-
+    if(columns !== rows){
+        columns = 64;
+        rows = 64;
+    }
     const w = 910 / columns;
-    const v = 910 / rows;
+    const v = 850 / rows;
     for (var i = 0; i < columns; ++i) {
         var column = document.createElement('div');
         column.className = 'column';
@@ -113,6 +121,31 @@ goBtn.addEventListener('click', (e) => {
         grid.appendChild(column);
     }
     document.body.appendChild(grid);
+
+//footer elemnet
+let ElementFoot = document.getElementById('foot');
+if(ElementFoot != null && ElementFoot != 'undefined'){
+    ElementFoot.remove();
+}
+let footEle = document.createElement('footer');
+footEle.id = "foot";
+footEle.innerText = "Made By RaviTeja";
+document.body.append(footEle);
+}
+if (parseInt(yAce.value) > 100 || parseInt(xAce.value) > 100) {
+    alert("Number should be less than 100, Try again.");
+} else {
+    getGrid();
+}
+
+let goBtn = document.getElementById("btnValue");
+// console.log(goBtn);
+goBtn.addEventListener('click', () => {
+    if (parseInt(yAce.value) > 100 || parseInt(xAce.value) > 100) {
+        alert("Number should be less than 100, Try again.");
+    } else {
+        getGrid();
+    }
 });
 
 //hovering effect
@@ -157,3 +190,4 @@ rainAcess.addEventListener('click', (e) => {
         }
     });
 });
+
