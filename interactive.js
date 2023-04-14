@@ -45,7 +45,7 @@ title.appendChild(h1);
 
 //inputDiv
 let inputDiv = document.createElement('div');
-inputDiv.id = "inputDiv"
+inputDiv.id = "inputDiv";
 comDiv.appendChild(inputDiv);
 
 //xvalue
@@ -54,12 +54,13 @@ xDiv.id = "xDiv";
 inputDiv.appendChild(xDiv);
 let xvalue = document.createElement('input');
 xvalue.type = "text";
-xvalue.name = "xvalue";
+xvalue.value = 16;
+xvalue.name = "xlvalue";
 xvalue.id = "xvalue";
 xDiv.appendChild(xvalue);
 let xlvalue = document.createElement('label');
-xlvalue.for = "xvalue";
-xlvalue.id = "xvalue";
+xlvalue.for = "xlvalue";
+xlvalue.id = "xlvalue";
 xlvalue.innerText = "grid-X";
 xDiv.appendChild(xlvalue);
 
@@ -69,45 +70,51 @@ yDiv.id = "yDiv";
 inputDiv.appendChild(yDiv);
 let yvalue = document.createElement('input');
 yvalue.type = "text";
-yvalue.name = "yvalue";
+yvalue.name = "ylvalue";
 yvalue.id = "yvalue";
+yvalue.value = 16;
 yDiv.appendChild(yvalue);
 let ylvalue = document.createElement('label');
-ylvalue.for = "yvalue";
-ylvalue.id = "yvalue";
+ylvalue.for = "ylvalue";
+ylvalue.id = "ylvalue";
 ylvalue.innerText = "grid-Y";
 yDiv.appendChild(ylvalue);
 let btnValue = document.createElement('button');
 btnValue.innerText = "GO";
 btnValue.id = "btnValue";
 inputDiv.appendChild(btnValue);
+document.body.appendChild(btnDiv);
 
-var columns = 64;
-var rows = 64;
-
-const w = 910 / columns;
-
+let yAce = document.getElementById('yvalue');
+let xAce = document.getElementById('xvalue');
 
 var grid = document.createElement('div');
 grid.className = 'grid';
 grid.id = "grid";
-for (var i = 0; i < columns; ++i) {
-    var column = document.createElement('div');
-    column.className = 'column';
-    for (var j = 0; j < rows; ++j) {
-        var row = document.createElement('div');
-        row.className = 'row';
-        row.id = 'row';
-        row.className = 'row';
-        row.style.width = w + 'px';
-        row.style.height = w + 'px';
-        column.appendChild(row);
-    }
-    grid.appendChild(column);
-}
+let goBtn = document.getElementById('btnValue');
+goBtn.addEventListener('click', (e) => {
+    let columns = parseInt(yAce.value);
+    let rows = parseInt(xAce.value);
 
-document.body.appendChild(btnDiv);
-document.body.appendChild(grid);
+    const w = 910 / columns;
+    const v = 910 / rows;
+    for (var i = 0; i < columns; ++i) {
+        var column = document.createElement('div');
+        column.className = 'column';
+        for (var j = 0; j < rows; ++j) {
+            var row = document.createElement('div');
+            row.className = 'row';
+            row.id = 'row';
+            row.className = 'row';
+            row.style.width = v + 'px';
+            row.style.height = w + 'px';
+            column.appendChild(row);
+        }
+        grid.appendChild(column);
+    }
+    document.body.appendChild(grid);
+});
+
 //hovering effect
 let blackAcess = document.getElementById("black");
 blackAcess.addEventListener('click', (e) => {
